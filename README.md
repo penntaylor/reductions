@@ -16,7 +16,7 @@ Warning
 
 If you have monkey-patched Enumerable#reduce and need to
 ensure #reductions works according to your patched #reduce, pass
-`use_reduce: true` to the call to reductions, like this:
+`use_reduce: true` to reductions:
 
     (5..10).reductions(:+,use_reduce: true)
     (5..10).reductions(use_reduce: true){|a,b| a + b}
@@ -27,7 +27,7 @@ section for performance difference.
 Why a gem for this?
 -------------------
 
-You could just provide a block to Enumerable#reduce that does the same
+You _could_ just provide a block to Enumerable#reduce that does the same
 thing:
 
     (5..10).reduce([]){|acc,n| acc += acc.last ? [acc.last + n] : [n] }
@@ -40,8 +40,7 @@ However, a gem is preferable for two key reasons:
    approach once you get into reductions with tens of thousands of elements. See
    "naive reductions" in the Benchmarking section. The speed boost we are able
    to achieve here comes at the expense of dozens of lines of code.
-   That's not the kind of thing you want sitting around in your code base
-   begging to be broken.
+   You don't have to maintain that code if it's in a gem.
 
 
 Benchmarking
@@ -57,10 +56,10 @@ The case being benchmarked here is `(1..100000).reductions{|a,b| a + b}`
 * `reduce` is a plain #reduce, included here to give a reference point for performance.
 * `reductions` is the reduction using the exact case shown above.
         Notice that the full reduction --which returns an array
-        with 100,000 entries-- only took **~2** times as long as a vanilla reduce!
+        with 100,000 entries-- took only **~2** times as long as a plain reduce!
 * `reductions use_reduce` is the reduction with the `use_reduce` flag set to
         true. This reduction uses #reduce in its implementation.
 * `naive reductions` is the reduction using reduce as shown in the "Why a gem for this?"
         section. The large number of incremental Array allocations makes
         it _really_ slow, in this case taking more than 400 times as long
-        as the **reductions** version.
+        as the `reductions` version.
