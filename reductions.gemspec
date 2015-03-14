@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'reductions'
-  s.version     = '1.0.0'
+  s.version     = '0.1.0'
   s.date        = '2015-03-13'
   s.summary     = "Adds reductions capability to Enumerable"
   s.description = <<-END

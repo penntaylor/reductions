@@ -5,6 +5,16 @@ Reductions is an addition to Ruby's Enumerable module that returns
 an array containing all of the intermediate values that would be
 generated in a call to Enumerable#reduce.
 
+Installation
+============
+
+`gem install reductions`
+
+Usage
+=====
+
+    require 'reductions'
+
     (5..10).reductions(:+)           # => [5, 11, 18, 26, 35, 45]
     (5..10).reductions{|a,b| a + b}  # => [5, 11, 18, 26, 35, 45]
 
@@ -19,6 +29,7 @@ ensure #reductions works according to your patched #reduce, pass
 
 Using this flag increases the required execution time. See Benchmarking
 section for performance difference.
+
 
 Why a gem for this?
 -------------------
