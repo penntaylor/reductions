@@ -2,12 +2,13 @@ Reductions
 ==========
 
 Reductions is an addition to Ruby's Enumerable module that returns
-an array containing all of the intermediate values generated in a call
-to Enumerable#reduce.
+an array containing all of the intermediate values that would be
+generated in a call to Enumerable#reduce.
 
-    (5..10).reduce(:+)               # => 45
     (5..10).reductions(:+)           # => [5, 11, 18, 26, 35, 45]
     (5..10).reductions{|a,b| a + b}  # => [5, 11, 18, 26, 35, 45]
+
+    # (5..10).reduce(:+)  would result in 45
 
 
 Warning
