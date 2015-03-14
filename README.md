@@ -10,11 +10,7 @@ generated in a call to Enumerable#reduce.
 
     # (5..10).reduce(:+)  would result in 45
 
-
-Warning
--------
-
-If you have monkey-patched Enumerable#reduce and need to
+**If you have monkey-patched Enumerable#reduce** and need to
 ensure #reductions works according to your patched #reduce, pass
 `use_reduce: true` to reductions:
 
@@ -55,11 +51,11 @@ The case being benchmarked here is `(1..100000).reductions{|a,b| a + b}`
 
 * `reduce` is a plain #reduce, included here to give a reference point for performance.
 * `reductions` is the reduction using the exact case shown above.
-        Notice that the full reduction --which returns an array
-        with 100,000 entries-- took only **~2** times as long as a plain reduce!
+    Notice that the full reduction --which returns an array
+    with 100,000 entries-- took only **~2** times as long as a plain reduce!
 * `reductions use_reduce` is the reduction with the `use_reduce` flag set to
-        true. This reduction uses #reduce in its implementation.
+    true. This reduction uses #reduce in its implementation.
 * `naive reductions` is the reduction using reduce as shown in the "Why a gem for this?"
-        section. The large number of incremental Array allocations makes
-        it _really_ slow, in this case taking more than 400 times as long
-        as the `reductions` version.
+    section. The large number of incremental Array allocations makes
+    it _really_ slow, in this case taking more than 400 times as long
+    as the `reductions` version.
