@@ -63,5 +63,5 @@ The case being benchmarked here is `(1..100000).reductions{|a,b| a + b}`
 * **naive reductions** is the reduction using reduce essentially the way you
         would do this as a pure functional construct in "normal code".
         All those incremental Array allocations make it _really_ slow.
-        In this case it takes **432** times as long as the Array version that
-        doesn't use #reduce in the implementation.
+        In this case it takes over 400 times as long as the **reductions** 
+        version. 
