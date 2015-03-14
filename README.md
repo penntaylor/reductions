@@ -13,16 +13,15 @@ to Enumerable#reduce.
 Warning
 -------
 
-If for some reason you have monkey-patched Enumerable#reduce and need to
-ensure that #reductions works according to your patched #reduce, then pass
-`use_reduce: true` to the call to reductions, like so:
+If you have monkey-patched Enumerable#reduce and need to
+ensure #reductions works according to your patched #reduce, pass
+`use_reduce: true` to the call to reductions, like this:
 
     (5..10).reductions(:+,use_reduce: true)
     (5..10).reductions(use_reduce: true){|a,b| a + b}
 
-This will force reductions to use a slightly slower (but more elegant!)
-implementation that uses #reduce directly. See Benchmarking section for
-performance difference.
+Using this flag increases the required execution time. See Benchmarking
+section for performance difference.
 
 Why a gem for this?
 -------------------
@@ -54,14 +53,13 @@ The case being benchmarked here is `(1..100000).reductions{|a,b| a + b}`
     reductions use_reduce      0.050000   0.000000   0.050000 (  0.051783)
     naive reductions          15.190000   0.530000  15.720000 ( 15.699648)
 
-* **reduce** is a plain #reduce, included here to give a reference point for performance.
-* **reductions** is the reduction using the exact case shown above.
+* `reduce` is a plain #reduce, included here to give a reference point for performance.
+* `reductions` is the reduction using the exact case shown above.
         Notice that the full reduction --which returns an array
         with 100,000 entries-- only took **~2** times as long as a vanilla reduce!
-* **reductions use_reduce** is the reduction with the use_reduce flag set to
+* `reductions use_reduce` is the reduction with the `use_reduce` flag set to
         true. This reduction uses #reduce in its implementation.
-* **naive reductions** is the reduction using reduce essentially the way you
-        would do this as a pure functional construct in "normal code".
-        All those incremental Array allocations make it _really_ slow.
-        In this case it takes over 400 times as long as the **reductions** 
-        version. 
+* `naive reductions` is the reduction using reduce as shown in the "Why a gem for this?"
+        section. The large number of incremental Array allocations makes
+        it _really_ slow, in this case taking more than 400 times as long
+        as the **reductions** version.
