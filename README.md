@@ -1,7 +1,7 @@
 Reductions
 ==========
 
-Reductions is a simple addition to Enumerable that returns
+Reductions is an addition to Enumerable that returns
 an array containing all of the intermediate values generated in a call
 to Enumerable#reduce.
 
