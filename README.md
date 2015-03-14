@@ -34,7 +34,7 @@ However, a gem is preferable for two key reasons:
    `(5..10).reductions(:+)`.
 *  There are significant performance problems with the "provide a block to reduce"
    approach once you get into reductions with tens of thousands of elements. See
-   "naive reductions" in the Benchmarking section.
+   "naïve reductions" in the Benchmarking section.
 
 
 Benchmarking
@@ -45,7 +45,7 @@ The case being benchmarked here is `(1..100000).reductions{|a,b| a + b}`
     reduce                     0.010000   0.000000   0.010000 (  0.017606)
     reductions                 0.040000   0.000000   0.040000 (  0.036335)
     reductions use_reduce      0.050000   0.000000   0.050000 (  0.051783)
-    naive reductions          15.190000   0.530000  15.720000 ( 15.699648)
+    naïve reductions          15.190000   0.530000  15.720000 ( 15.699648)
 
 * `reduce` is a plain #reduce, included here to give a reference point for performance.
 * `reductions` is the reduction using the exact case shown above.
@@ -53,7 +53,7 @@ The case being benchmarked here is `(1..100000).reductions{|a,b| a + b}`
     with 100,000 entries-- took only **~2** times as long as a plain reduce!
 * `reductions use_reduce` is the reduction with the `use_reduce` flag set to
     true. This reduction uses #reduce in its implementation.
-* `naive reductions` is the reduction using reduce as shown in the "Why a gem for this?"
+* `naïve reductions` is the reduction using reduce as shown in the "Why a gem for this?"
     section. The large number of incremental Array allocations makes
     it _really_ slow, in this case taking more than 400 times as long
     as the `reductions` version.
