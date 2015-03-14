@@ -1,7 +1,7 @@
 Reductions
 ==========
 
-Reductions is an addition to Enumerable that returns
+Reductions is an addition to Ruby's Enumerable module that returns
 an array containing all of the intermediate values generated in a call
 to Enumerable#reduce.
 
